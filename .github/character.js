@@ -23,14 +23,14 @@ pop();
 
 //Table
 
-fill(255,222,173);
+fill(31,115,81);
 noStroke();
 rect(0, 620, 800, 700);
 
 
 //Plate
 
-fill(205,92,92);
+fill(175,167,55);
 noStroke();
 rect(265, 625, 230, 110);
 
@@ -38,10 +38,33 @@ rect(265, 625, 230, 110);
 push();
 fill(255, 255, 255);
 
-stroke(230, 221, 197);
+stroke(202, 132, 62);
 strokeWeight(15);
 ellipse(380, 680, 170, 100);
 pop();
+
+
+push();
+
+fill(85, 47, 9);
+rect(480, 660, 5, 70, 5);
+ellipse(482, 660, 25, 30);
+pop();
+
+push();
+fill(175,167,55);
+ellipse(482, 650, 20, 45);
+pop();
+
+push();
+fill(85, 47, 9);
+rect(481, 653, 3, 70);
+pop();
+
+
+//Spaghetti
+
+
 
 //Obstacles
 
