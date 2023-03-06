@@ -7,7 +7,6 @@ let game_running=false;
 function tomato(x, y) {
     push();
     translate(x, y);
-  
 
 //Tomato
 
@@ -21,12 +20,13 @@ push();
 fill(1, 50, 32);
 
 beginShape();
- 
+
  vertex(300, 265);
  bezierVertex(290, 230, 290, 275, 300, 270);
  bezierVertex(280, 270, 280, 280, 310, 275);
  
 endShape();
+pop();
 pop();
 }
 
@@ -42,14 +42,14 @@ function scenary() {
 
 fill(31,115,81);
 noStroke();
-rect(-100, 900, 900, 100);
+rect(-100, 650, 900, 100);
 
 
 //Plate
 
 fill(175,167,55);
 noStroke();
-rect(230, 900, 230, 110);
+rect(250, 650, 230, 110);
 
 
 push();
@@ -57,23 +57,23 @@ fill(255, 255, 255);
 
 stroke(202, 132, 62);
 strokeWeight(15);
-ellipse(350, 940, 160, 110);
+ellipse(370, 680, 160, 110);
 pop();
 
 //Fork
 push();
 
 fill(85, 47, 9);
-rect(445, 920, 5, 70, 5);
-ellipse(447, 920, 25, 30);
+rect(465, 670, 5, 70, 5);
+ellipse(468, 670, 25, 30);
 pop();
 
 push();
 fill(175,167,55);
-ellipse(447, 915, 10, 30);
+ellipse(468, 665, 10, 30);
 pop();
 }
-  
+
 
 function blocks(x, h) {
     push();
@@ -82,47 +82,85 @@ function blocks(x, h) {
   
   fill(139,69,19);
   
-  rect(x, y+300, w, y - 95);
+  rect(x, +170, w, y - 95);
   
-  rect(x, y+500, w, y-95);
+  rect(x, y+250, w, y-95);
   
-  rect(x, y+700, w, y-95);
+  rect(x, y+400, w, y-95);
   
   pop();
   }
   
- let blocksX=200;
+let blocksX=100;
 let direction= "right";
-
+let tomatoY = -250;
+let velocity = 1;
+let acceleration = 0.1;
+let isGameActive = true;
 
 
   function play() {
+
+
+
+
     background(249, 232, 163);
-    tomato(50, -250);
+    tomato(60, tomatoY);
     scenary();
-    blocks(blocksX, 100);
+    blocks(blocksX, 150);
     
-    if(direction== "right"){
-        blocksX= blocksX + 2;
+    if (isGameActive) {
+        blocksX = blocksX - 1;
+        tomatoY = tomatoY + velocity;
+        velocity = velocity + acceleration;
+      
+        if (blocksX < -100) {
+        blocksX = width + 100;
         }
       
-    
-        if(direction=="left"){
-          blocksX= blocksX - 1;
+        if (tomatoY > 320) {
+          isGameActive = false;
         }
+    }
+  
     
-        if(blocksX>=500) {
-          direction = "left";
-        }
+  
+    if(direction== "right"){
+      blocksX= blocksX + 2;
+     }
     
-        if(blocksX<=0){
-          direction= "right";
-        }
+  
+      if(direction=="left"){
+        blocksX= blocksX - 1;
+     }
+  
+      if(blocksX>=500) {
+        direction = "left";
+      }
+  
+      if(blocksX<=0){
+        direction= "right";
+      }
+  
+  
+  if (mouseIsPressed) {
+    velocity = velocity - 0.2;
   }
+  }
+  
+  
+  function mousePressed() {
+    velocity = velocity -1;
+  } 
+
+
+
+ 
+
+ 
 
 function draw(){
     background(249, 232, 163);
-
     if(! game_running){
         textAlign(CENTER, CENTER);
         textSize(40);
@@ -145,13 +183,12 @@ function draw(){
         if(mouseIsPressed){
             game_running=true;
         }
-        else{
-            play();
-        }
+        
+    }else{
+        play();
     }
     }
    
-
 
 
 
