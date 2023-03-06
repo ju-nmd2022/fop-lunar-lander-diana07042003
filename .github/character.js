@@ -146,6 +146,13 @@ let isGameActive = true;
   if (mouseIsPressed) {
     velocity = velocity - 0.2;
   }
+  if(tomato<=100 && tomato>400 && velocity>3){
+    game_running = false;
+    losingScreen();
+    }  else if(tomato>380 && tomato>200 && velocity<3){
+    game_running = false;
+    velocity=0;
+    }
   }
   
   
@@ -174,7 +181,7 @@ function draw(){
     
         fill(0, 0, 0);
         textSize(17);
-        text('Your main task is to land the tomato on the plate, BUT be careful, you can not hit any obtacles!', 400, 350);
+        text('Your main task is to land the tomato on the plate, BUT be careful, you have to do it as slow as possible!', 400, 350);
     
         fill(0, 0, 0);
         textSize(30);
@@ -188,6 +195,23 @@ function draw(){
         play();
     }
     }
+
+
+function losingScreen(){
+    background(249, 232, 163);
+    if(!game_running){
+        textAlign(CENTER, CENTER);
+        textSize(40);
+        fill(139, 0, 0);
+        text('You Lost', 400, 150);
+        text('Better luck next time', 400, 600);
+    }
+    if(mouseIsPressed){
+        game_running=true;
+    } else{
+        draw();
+    }
+}
    
 
 
