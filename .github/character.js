@@ -72,6 +72,7 @@ push();
 fill(175,167,55);
 ellipse(468, 665, 10, 30);
 pop();
+pop();
 }
 
 
@@ -93,7 +94,7 @@ function blocks(x, h) {
   
 let blocksX=100;
 let direction= "right";
-let tomatoY = -250;
+let tomatoY = -260;
 let velocity = 1;
 let acceleration = 0.1;
 let isGameActive = true;
@@ -117,11 +118,15 @@ let isGameActive = true;
         if (blocksX < -100) {
         blocksX = width + 100;
         }
+
+        if (mouseIsPressed){
+            velocity=velocity-0.2;
+        }
       
-        if (tomatoY > 320) {
+        if (tomatoY > 325) {
           isGameActive = false;
         }
-    }
+    
   
     
   
@@ -146,21 +151,16 @@ let isGameActive = true;
   if (mouseIsPressed) {
     velocity = velocity - 0.2;
   }
-  if(tomato<=100 && tomato>400 && velocity>3){
-    game_running = false;
-    losingScreen();
-    }  else if(tomato>380 && tomato>200 && velocity<3){
-    game_running = false;
-    velocity=0;
-    }
-  }
+  
+}
+}
   
   
   function mousePressed() {
-    velocity = velocity -1;
+    velocity = velocity -1.6;
   } 
 
-
+  
 
  
 
