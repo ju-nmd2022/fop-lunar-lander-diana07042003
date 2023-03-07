@@ -1,6 +1,5 @@
 let game_running=false;
 
-
 function setup(){
     createCanvas(800, 740);
 }
@@ -84,11 +83,6 @@ function blocks(x, h) {
   
   fill(139,69,19);
   
-  rect(x, +170, w, y - 95);
-  
-  rect(x, y+250, w, y-95);
-  
-  rect(x, y+400, w, y-95);
   
   pop();
   }
@@ -96,22 +90,20 @@ function blocks(x, h) {
 
 let blocksX=100;
 let direction= "right";
-let tomatoY = -260;
-let velocity = 1;
+let tomatoY = -200;
+let velocity = 0;
 let acceleration = 0.1;
 let isGameActive = true;
 var screen = 1;
+let particles = [];
+
+
+
 
 
   function play() {
 
-   
-
-
-
-
-
-
+    
     background(249, 232, 163);
     tomato(60, tomatoY);
     scenary();
@@ -127,11 +119,28 @@ var screen = 1;
         }
 
         if (mouseIsPressed){
-            velocity=velocity-0.2;
+            velocity=velocity-0.1;
+        }
+
+        if (tomatoY > 320 && velocity>2.5) {
+            isGameActive = false;
+            screen = 3;
+          }
+
+
+        if (tomatoY > 320 && velocity<2.5){
+            isGameActive = false;
+            screen = 4;
         }
       
-        if (tomatoY > 325) {
-          isGameActive = false;
+        if (tomato>=320  && velocity <2) {
+          winScreen();
+        }
+        else if ( tomato<=320  && velocity>2){
+            losingScreen();
+
+
+            velocity = 0;
         }
     
   
@@ -167,7 +176,7 @@ var screen = 1;
   
   
   function mousePressed() {
-    velocity = velocity -0.8;
+    velocity = velocity -0.3;
   } 
 
   
@@ -176,7 +185,7 @@ var screen = 1;
 
  
 
-function draw(){
+function first(){
     background(249, 232, 163);
     if(! game_running){
         textAlign(CENTER, CENTER);
@@ -204,9 +213,16 @@ function draw(){
     }else{
         play();
     }
-
+}
+   
+   
+function draw(){ 
+    
+   
+    
+    
     if(screen == 1){
-        draw();
+      first();
     }
 
     if(screen == 2 ){
@@ -223,7 +239,10 @@ function draw(){
         winScreen();
     }
 
-    }
+
+    
+
+}
 
 
 function losingScreen(){
