@@ -1,8 +1,9 @@
-
-
 let game_running=false;
 
 
+function setup(){
+    createCanvas(800, 740);
+}
 
 function tomato(x, y) {
     push();
@@ -92,15 +93,21 @@ function blocks(x, h) {
   pop();
   }
   
+
 let blocksX=100;
 let direction= "right";
 let tomatoY = -260;
 let velocity = 1;
 let acceleration = 0.1;
 let isGameActive = true;
+var screen = 1;
 
 
   function play() {
+
+   
+
+
 
 
 
@@ -149,15 +156,18 @@ let isGameActive = true;
   
   
   if (mouseIsPressed) {
-    velocity = velocity - 0.2;
+    velocity = velocity - 0.1;
   }
   
 }
+
+    
+
 }
   
   
   function mousePressed() {
-    velocity = velocity -1.6;
+    velocity = velocity -0.8;
   } 
 
   
@@ -172,7 +182,7 @@ function draw(){
         textAlign(CENTER, CENTER);
         textSize(40);
         fill(139, 0, 0);
-        text('The aventure of the tomato', 400, 150);
+        text('The adventure of the tomato', 400, 150);
         text('Click to start', 400, 600);
         
         fill(0, 0, 0);
@@ -194,23 +204,47 @@ function draw(){
     }else{
         play();
     }
+
+    if(screen == 1){
+        draw();
+    }
+
+    if(screen == 2 ){
+        play();
+    }
+
+    
+    if(screen == 3 ){
+        losingScreen();
+    }
+
+    
+    if(screen== 4 ){
+        winScreen();
+    }
+
     }
 
 
 function losingScreen(){
     background(249, 232, 163);
-    if(!game_running){
-        textAlign(CENTER, CENTER);
-        textSize(40);
-        fill(139, 0, 0);
-        text('You Lost', 400, 150);
-        text('Better luck next time', 400, 600);
+    textAlign(CENTER, CENTER);
+    textSize(40);
+    fill(139, 0, 0);
+    text('You Lost', 400, 150);
+    text('Better luck next time', 400, 600);
+    
     }
-    if(mouseIsPressed){
-        game_running=true;
-    } else{
-        draw();
-    }
+   
+
+function winScreen(){
+    background(249, 232, 163);
+    textAlign(CENTER, CENTER);
+    textSize(40);
+    fill(139, 0, 0);
+    text('You Won', 400, 150);
+    text('Great job!', 400, 600);
+   
 }
    
 
