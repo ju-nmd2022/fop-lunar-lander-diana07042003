@@ -95,7 +95,7 @@ let velocity = 0;
 let acceleration = 0.1;
 let isGameActive = true;
 var screen = 1;
-let particles = [];
+
 
 
 
