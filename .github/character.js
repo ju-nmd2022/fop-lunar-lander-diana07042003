@@ -2,7 +2,10 @@ let game_running=false;
 
 function setup(){
     createCanvas(800, 740);
+    
+    
 }
+
 
 function tomato(x, y) {
     push();
@@ -101,6 +104,8 @@ var screen = 1;
 
 
 
+
+
   function play() {
 
     
@@ -138,9 +143,12 @@ var screen = 1;
         }
         else if ( tomato<=320  && velocity>2){
             losingScreen();
+            
 
 
             velocity = 0;
+        }
+        
         }
     
   
@@ -166,17 +174,21 @@ var screen = 1;
   
   if (mouseIsPressed) {
     velocity = velocity - 0.1;
-  }
-  
-}
-
     
+  }
 
+ 
 }
+
+ 
+
+
   
   
   function mousePressed() {
     velocity = velocity -0.3;
+   
+    
   } 
 
   
@@ -239,38 +251,68 @@ function draw(){
         winScreen();
     }
 
-
     
 
 }
 
 
 function losingScreen(){
-    background(249, 232, 163);
+  background(249, 232, 163);
+  if(game_running){ 
+    
     textAlign(CENTER, CENTER);
     textSize(40);
     fill(139, 0, 0);
     text('You Lost', 400, 150);
     text('Better luck next time', 400, 600);
     
+    
+    fill(0, 0, 0);
+    text('Click to Restart', 380, 420);
+
+    if(mouseIsPressed){
+      game_running=false;
+    }
+   }
+   else{
+    restart();
+    
+   }
+    
     }
    
 
 function winScreen(){
     background(249, 232, 163);
+    
+    
+    
     textAlign(CENTER, CENTER);
     textSize(40);
     fill(139, 0, 0);
     text('You Won', 400, 150);
     text('Great job!', 400, 600);
+    
+    
+  
    
 }
    
+function restart(){
+ 
+    if(!game_running){
+      first();
 
-
-
-
-
-
-
-
+        if(mouseIsPressed){
+          game_running = true;
+          noLoop();
+        }
+        
+    }else{
+       
+      background(249, 232, 163);
+      tomato(60, tomatoY);
+      scenary();
+    
+}
+}
