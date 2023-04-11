@@ -138,15 +138,13 @@ var screen = 1;
             screen = 4;
         }
       
-        if (tomato>=320  && velocity <2) {
+        if (tomatoY > 320  && velocity <2) {
+          console.log('win')
           winScreen();
         }
-        else if ( tomato<=320  && velocity>2){
-            losingScreen();
-            
-
-
-            velocity = 0;
+        else if ( tomatoY > 320  && velocity>2){
+          console.log('loose')
+          losingScreen();
         }
         
         }
@@ -220,6 +218,7 @@ function first(){
 
         if(mouseIsPressed){
             game_running=true;
+            isGameActive = true;
         }
         
     }else{
@@ -259,7 +258,6 @@ function draw(){
 function losingScreen(){
   background(249, 232, 163);
   if(game_running){ 
-    
     textAlign(CENTER, CENTER);
     textSize(40);
     fill(139, 0, 0);
@@ -272,10 +270,15 @@ function losingScreen(){
 
     if(mouseIsPressed){
       game_running=false;
+      tomatoY = -200;
+      velocity = 0;
+      acceleration = 0.1;
+      screen = 1;
+      isGameActive = true;
     }
    }
    else{
-    restart();
+    first();
     
    }
     
@@ -285,34 +288,44 @@ function losingScreen(){
 function winScreen(){
     background(249, 232, 163);
     
-    
-    
-    textAlign(CENTER, CENTER);
-    textSize(40);
-    fill(139, 0, 0);
-    text('You Won', 400, 150);
-    text('Great job!', 400, 600);
-    
-    
-  
-   
+    if(game_running){
+      textAlign(CENTER, CENTER);
+      textSize(40);
+      fill(139, 0, 0);
+      text('You Won', 400, 150);
+      text('Great job!', 400, 600);
+
+      fill(0, 0, 0);
+      text('Click to Restart', 380, 420);
+
+
+    if(mouseIsPressed){
+      game_running=false;
+      tomatoY = -200;
+      velocity = 0;
+      acceleration = 0.1;
+      screen = 1;
+      isGameActive = true;
+    }
+  }
+    else{
+      first();
+      
 }
+    }
    
 function restart(){
  
     if(!game_running){
       first();
-
-        if(mouseIsPressed){
-          game_running = true;
-          noLoop();
-        }
-        
     }else{
        
       background(249, 232, 163);
       tomato(60, tomatoY);
       scenary();
+    
+
+     
     
 }
 }
