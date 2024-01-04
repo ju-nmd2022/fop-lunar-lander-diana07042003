@@ -175,9 +175,27 @@ var screen = 1;
 }
   
   
-  function mousePressed() {
-    velocity = velocity -0.3;
-  } 
+
+    function mousePressed() {
+      if (screen === 3 || screen === 4) {
+      
+        resetGame();
+      } else {
+        
+        velocity = velocity - 0.3;
+      }
+    }
+    
+    function resetGame() {
+      // Reset all relevant variables to their initial values
+      game_running = false;
+      screen = 1;
+      blocksX = 100;
+      tomatoY = -200;
+      velocity = 0;
+      isGameActive = true;
+    }
+   
 
   
 
@@ -211,6 +229,7 @@ function first(){
         }
         
     }else{
+      
         play();
     }
 }
@@ -252,6 +271,8 @@ function losingScreen(){
     fill(139, 0, 0);
     text('You Lost', 400, 150);
     text('Better luck next time', 400, 600);
+    text('Click to restart the game!', 400, 680);
+
     
     }
    
@@ -263,6 +284,7 @@ function winScreen(){
     fill(139, 0, 0);
     text('You Won', 400, 150);
     text('Great job!', 400, 600);
+    text('Click to restart the game!', 400, 680);
    
 }
    
